@@ -33,3 +33,36 @@ router.post(
 );
 
 ```
+
+## 2 Error Handler
+
+### dependencies:
+
+- express-async-errors
+
+### how to use: 
+
+- check errors/custom-error.ts
+
+### example:
+
+in index.ts
+
+````
+import express from 'express';
+import 'express-async-errors';
+import { errorHandler } from './middlewares/error-handler';
+import { NotFoundError } from './errors/not-found-error';
+
+.
+.
+.
+
+// after the app routes
+
+app.all('*', async () => {
+  throw new NotFoundError();
+});
+
+app.use(errorHandler);
+````
